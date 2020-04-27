@@ -17,4 +17,4 @@ SELECT
   client_info.first_run_date,
   ping_info.end_time
 FROM
-  {namespace}.metrics_v1
+  {namespace}.metrics AS {namespace}_metrics
