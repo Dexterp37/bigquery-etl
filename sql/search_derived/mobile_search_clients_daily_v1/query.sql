@@ -58,7 +58,9 @@ WITH core_flattened_searches AS (
 fenix_client_locales AS (
   SELECT
     client_info.client_id,
-    udf.mode_last(ARRAY_AGG(metrics.string.glean_baseline_locale)) AS locale
+    udf.mode_last(ARRAY_AGG(
+      udf.normalize_glean_baseline_client_info(metrics.string.glean_baseline_locale)
+    )) AS locale
   FROM
     org_mozilla_fenix_stable.baseline_v1
   WHERE
